@@ -1,3 +1,4 @@
+/*
 data "terraform_remote_state" "stage0a_output" {
   backend = "azurerm"
 
@@ -20,6 +21,7 @@ data "terraform_remote_state" "stage0b_output" {
     key                  = "stage0b.tfstate"
   }
 }
+*/
 
 data "azurerm_client_config" "current" {
 }
