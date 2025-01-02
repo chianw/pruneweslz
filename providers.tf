@@ -11,9 +11,9 @@ terraform {
   }
   ## below block defines the backend that contains tfstate for this deployment
   backend "azurerm" {
-    resource_group_name  = data.terraform_remote_state.stage0b_output.outputs.resource_group_name
-    storage_account_name = data.terraform_remote_state.stage0b_output.outputs.storage_account_name
-    container_name       = data.terraform_remote_state.stage0b_output.outputs.container_name
+    resource_group_name  = "${data.terraform_remote_state.stage0b_output.outputs.resource_group_name}"
+    storage_account_name = "${data.terraform_remote_state.stage0b_output.outputs.storage_account_name}"
+    container_name       = "${data.terraform_remote_state.stage0b_output.outputs.container_name}"
     key                  = "eslz.tfstate"
   }
 }
