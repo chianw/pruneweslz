@@ -1,3 +1,4 @@
+# use subscription id of bootstrap storage account
 data "terraform_remote_state" "stage0a_output" {
   backend = "azurerm"
 
@@ -7,10 +8,11 @@ data "terraform_remote_state" "stage0a_output" {
     container_name       = "tfstate"
     key                  = "stage0a.tfstate"
     use_oidc             = true
+    subscription_id      = "ad6f62ba-74ae-4f03-8123-5431c364621d"
   }
 }
 
-
+# use subscription id of bootstrap storage account
 data "terraform_remote_state" "stage0b_output" {
   backend = "azurerm"
 
@@ -19,7 +21,8 @@ data "terraform_remote_state" "stage0b_output" {
     storage_account_name = "prutfinitsa"
     container_name       = "tfstate"
     key                  = "stage0b.tfstate"
-    use_oidc             = true    
+    use_oidc             = true
+    subscription_id      = "ad6f62ba-74ae-4f03-8123-5431c364621d"
   }
 }
 
