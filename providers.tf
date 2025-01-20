@@ -4,9 +4,13 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">=4.14.0, < 5.0"
     }
-    azuread = {
-      source  = "hashicorp/azuread"
-      version = "3.0.2"
+    azapi = {
+      source  = "azure/azapi"
+      version = "~> 2.0, >= 2.0.1"
+    }
+    alz = {
+      source  = "azure/alz"
+      version = "~> 0.17.0"
     }
   }
   ## below block defines the backend that contains tfstate for this deployment
@@ -24,4 +28,16 @@ provider "azurerm" {
   features {}
   #   subscription_id = var.subscription_id
   use_oidc = true
+}
+
+provider "alz" {
+  library_references = [
+    {
+      path = "platform/alz"
+      ref  = "2025.01.0"
+    },
+    {
+      custom_url = "${path.root}/lib"
+    }
+  ]
 }

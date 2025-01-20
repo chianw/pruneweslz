@@ -26,7 +26,12 @@ data "terraform_remote_state" "stage0b_output" {
 data "azurerm_client_config" "current" {
 }
 
-resource "azurerm_resource_group" "this" {
-  name     = "prutesteslzrg"
-  location = "australiaeast"
+# This allows us to get the tenant id
+data "azapi_client_config" "current" {}
+
+module "alz_architecture" {
+  source             = "git::https://github.com/Azure/terraform-azurerm-avm-ptn-alz.git?ref=v0.10.0"
+  architecture_name  = "custom"
+  parent_resource_id = data.azapi_client_config.current.tenant_id
+  location           = "eastasia"
 }

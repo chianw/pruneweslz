@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/Azure-Landing-Zones-Library/main/schemas/architecture_definition.json",
+  "name": "custom",
+  "management_groups": [
+    {
+      "archetypes": [
+        "root"
+      ],
+      "display_name": "prunc ALZ root",
+      "exists": false,
+      "id": "prunc-alzroot",
+      "parent_id": null
+    },
+    {
+      "archetypes": [
+        "landing_zones"
+      ],
+      "display_name": "prunc Landing zones",
+      "exists": false,
+      "id": "prunc-landingzones",
+      "parent_id": "prunc-alzroot"
+    },
+    {
+      "archetypes": [
+        "empty"
+      ],
+      "display_name": "prunc LBU1",
+      "exists": false,
+      "id": "prunc-lbu1",
+      "parent_id": "prunc-landingzones"
+    },    
+    {
+      "archetypes": [
+        "platform"
+      ],
+      "display_name": "prunc Platform",
+      "exists": false,
+      "id": "prunc-platform",
+      "parent_id": "prunc-alzroot"
+    },
+
+    {
+      "archetypes": [
+        "management"
+      ],
+      "display_name": "prunc Management",
+      "exists": false,
+      "id": "prunc-management",
+      "parent_id": "prunc-platform"
+    },
+    {
+      "archetypes": [
+        "connectivity"
+      ],
+      "display_name": "prunc Connectivity",
+      "exists": false,
+      "id": "prunc-connectivity",
+      "parent_id": "prunc-platform"
+    }
+  ]
+}
