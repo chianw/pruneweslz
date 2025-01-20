@@ -42,9 +42,9 @@ data "azurerm_management_group" "mgt" {
   name = "prunc-alzroot"
 }
 
-data "azurerm_subscription" "mgtsubscription" {
-  subscription_id = "12345678-1234-1234-1234-123456789012"
-}
+# data "azurerm_subscription" "mgtsubscription" {
+#   subscription_id = "12345678-1234-1234-1234-123456789012"
+# }
 
 resource "azurerm_management_group_subscription_association" "mgtsubscription_association" {
   management_group_id = data.azurerm_management_group.mgt.id
