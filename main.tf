@@ -37,7 +37,7 @@ module "alz_architecture" {
 
 # move management and connectivity subscription to right management groups
 data "azurerm_management_group" "mgt" {
-  name = "prunc ALZ root"
+  name = "prunc-alzroot"
 }
 
 data "azurerm_subscription" "mgtsubscription" {
