@@ -51,6 +51,6 @@ data "azurerm_management_group" "mgt" {
 
 resource "azurerm_management_group_subscription_association" "mgtsubscription_association" {
   management_group_id = data.azurerm_management_group.mgt.id
-  subscription_id     = data.terraform_remote_state.stage0a_output.outputs.subscription_id
+  subscription_id     = "/subscriptions/${data.terraform_remote_state.stage0a_output.outputs.subscription_id}"
   depends_on          = [module.alz_architecture]
 }
