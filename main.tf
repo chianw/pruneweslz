@@ -6,6 +6,7 @@ data "terraform_remote_state" "stage0a_output" {
     storage_account_name = "prutfinitsa"
     container_name       = "tfstate"
     key                  = "stage0a.tfstate"
+    use_oidc             = true
   }
 }
 
@@ -18,6 +19,7 @@ data "terraform_remote_state" "stage0b_output" {
     storage_account_name = "prutfinitsa"
     container_name       = "tfstate"
     key                  = "stage0b.tfstate"
+    use_oidc             = true    
   }
 }
 
