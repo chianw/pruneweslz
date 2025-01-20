@@ -1,4 +1,3 @@
-/*
 data "terraform_remote_state" "stage0a_output" {
   backend = "azurerm"
 
@@ -21,7 +20,7 @@ data "terraform_remote_state" "stage0b_output" {
     key                  = "stage0b.tfstate"
   }
 }
-*/
+
 
 data "azurerm_client_config" "current" {
 }
@@ -34,4 +33,19 @@ module "alz_architecture" {
   architecture_name  = "custom"
   parent_resource_id = data.azapi_client_config.current.tenant_id
   location           = "eastasia"
+}
+
+# move management and connectivity subscription to right management groups
+data "azurerm_management_group" "mgt" {
+  name = "prunc ALZ root"
+}
+
+data "azurerm_subscription" "mgtsubscription" {
+  subscription_id = "12345678-1234-1234-1234-123456789012"
+}
+
+resource "azurerm_management_group_subscription_association" "mgtsubscription_association" {
+  management_group_id = data.azurerm_management_group.mgt.id
+  subscription_id     = data.terraform_remote_state.stage0a_output.outputs.subscription_id
+  depends_on          = [module.alz_architecture]
 }
