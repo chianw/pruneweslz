@@ -45,6 +45,10 @@ data "azurerm_management_group" "mgt" {
   name = "prunc-management"
 }
 
+data "azurerm_management_group" "conn" {
+  name = "prunc-connectivity"
+}
+
 # data "azurerm_subscription" "mgtsubscription" {
 #   subscription_id = "12345678-1234-1234-1234-123456789012"
 # }
@@ -52,5 +56,11 @@ data "azurerm_management_group" "mgt" {
 resource "azurerm_management_group_subscription_association" "mgtsubscription_association" {
   management_group_id = data.azurerm_management_group.mgt.id
   subscription_id     = "/subscriptions/${data.terraform_remote_state.stage0a_output.outputs.subscription_id}"
+  depends_on          = [module.alz_architecture]
+}
+
+resource "azurerm_management_group_subscription_association" "connsubscription_association" {
+  management_group_id = data.azurerm_management_group.conn.id
+  subscription_id     = "/subscriptions/${data.terraform_remote_state.stage0a_output.outputs.conn_subscription_id}"
   depends_on          = [module.alz_architecture]
 }
