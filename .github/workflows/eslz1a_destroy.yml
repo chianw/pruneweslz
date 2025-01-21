@@ -6,7 +6,7 @@ permissions:
   id-token: write
   contents: read
 jobs:
-  create-eslz:
+  destroy-eslz:
     environment: eslz
     runs-on: ubuntu-latest
     steps:
