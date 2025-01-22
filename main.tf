@@ -42,11 +42,13 @@ module "alz_architecture" {
 
 # move management and connectivity subscription to right management groups
 data "azurerm_management_group" "mgt" {
-  name = "prunc-management"
+  name       = "prunc-management"
+  depends_on = [module.alz_architecture]
 }
 
 data "azurerm_management_group" "conn" {
-  name = "prunc-connectivity"
+  name       = "prunc-connectivity"
+  depends_on = [module.alz_architecture]
 }
 
 # data "azurerm_subscription" "mgtsubscription" {
